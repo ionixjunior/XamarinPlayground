@@ -36,11 +36,15 @@ namespace Core.ViewModels
 		{
 			Data = new ObservableCollection<ContactModel>(ContactFake.GetAll());
 
-			MessagingCenter.Subscribe(this, "UpdateList", (ContactModel model) =>
+			MessagingCenter.Subscribe(this, "UpdateList", async (ContactModel model) =>
 			{
 				System.Diagnostics.Debug.WriteLine("Updating list...");
 				int index = Data.IndexOf(model);
-				Data[index] = model;
+
+				//The below lines is an workaround for Android.
+				Data.RemoveAt(index);
+				await Task.Delay(100);
+				Data.Insert(index, model);
 			});
 		}
 
