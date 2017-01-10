@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Core.Views;
+using Xamarin.Forms;
 
 namespace Core
 {
@@ -8,7 +9,7 @@ namespace Core
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new CorePage());
+			MainPage = new NavigationPage(new HomeView());
 		}
 
 		protected override void OnStart()
