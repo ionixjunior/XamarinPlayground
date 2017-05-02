@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Core.Helpers;
@@ -38,13 +38,13 @@ namespace Core.ViewModels
 				{
 					await DependencyService
 						.Get<IServerService>()
-						.Insert(Contact);
+						.Post(Contact);
 				}
 				else
 				{
 					await DependencyService
 						.Get<IServerService>()
-						.Update(Contact.Id, Contact);
+						.Put(Contact.Id, Contact);
 				}
 			}
 			catch (Exception e)

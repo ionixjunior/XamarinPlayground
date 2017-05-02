@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Core.Models;
@@ -8,32 +8,37 @@ namespace Core.Services
 {
 	public class RefitService : IServerService
 	{
-		private IServerService _refit;
-		private IServerService Refit 
-			=> _refit ?? (_refit = RestService.For<IServerService>(AppConfig.RestApiBaseUrl));
+		private IServerService _server;
 
-		public async Task<IList<ContactModel>> GetContacts()
+		public RefitService()
 		{
-			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
-			return await Refit.GetContacts();
+			_server = RestService.For<IServerService>(
+				AppConfig.RestApiBaseUrl
+			);
 		}
 
-		public async Task<ContactModel> Insert(ContactModel contactModel)
+		public async Task<IList<ContactModel>> Get()
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
-			return await Refit.Insert(contactModel);
+			return await _server.Get();
 		}
 
-		public async Task<ContactModel> Update(string id, ContactModel contactModel)
+		public async Task<ContactModel> Post(ContactModel contactModel)
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
-			return await Refit.Update(id, contactModel);
+			return await _server.Post(contactModel);
+		}
+
+		public async Task<ContactModel> Put(string id, ContactModel contactModel)
+		{
+			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
+			return await _server.Put(id, contactModel);
 		}
 
 		public async Task Delete(string id)
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
-			await Refit.Delete(id);
+			await _server.Delete(id);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,12 +13,14 @@ namespace Core.Services
 	public class HttpClientService : IServerService
 	{
 		private HttpClient _httpClient;
-		private HttpClient HttpClient 
-			=> _httpClient ?? (_httpClient = new HttpClient());
-
 		private string _token = "YWRtaW46MTIz";
 
-		public async Task<IList<ContactModel>> GetContacts()
+		public HttpClientService()
+		{
+			_httpClient = new HttpClient();
+		}
+
+		public async Task<IList<ContactModel>> Get()
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
 
@@ -26,7 +28,7 @@ namespace Core.Services
 
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
 			request.Headers.Add("Authorization", $"Basic {_token}");
-			HttpResponseMessage response = await HttpClient.SendAsync(request);
+			HttpResponseMessage response = await _httpClient.SendAsync(request);
 
 			if (response.IsSuccessStatusCode == false)
 				throw new Exception(response.ReasonPhrase);
@@ -35,7 +37,7 @@ namespace Core.Services
 			return JsonConvert.DeserializeObject<IList<ContactModel>>(result);
 		}
 
-		public async Task<ContactModel> Insert(ContactModel contactModel)
+		public async Task<ContactModel> Post(ContactModel contactModel)
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
 
@@ -44,7 +46,11 @@ namespace Core.Services
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
 			request.Headers.Add("Authorization", $"Basic {_token}");
 			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			request.Content = new StringContent(JsonConvert.SerializeObject(contactModel), Encoding.UTF8, "application/json");
+			request.Content = new StringContent(
+				JsonConvert.SerializeObject(contactModel), 
+				Encoding.UTF8, 
+				"application/json"
+			);
 			HttpResponseMessage response = await _httpClient.SendAsync(request);
 
 			if (response.IsSuccessStatusCode == false)
@@ -54,7 +60,7 @@ namespace Core.Services
 			return JsonConvert.DeserializeObject<ContactModel>(result);
 		}
 
-		public async Task<ContactModel> Update(string id, ContactModel contactModel)
+		public async Task<ContactModel> Put(string id, ContactModel contactModel)
 		{
 			System.Diagnostics.Debug.WriteLine($"Implementation: {this.GetType().Name}");
 
@@ -64,8 +70,12 @@ namespace Core.Services
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
 			request.Headers.Add("Authorization", $"Basic {_token}");
 			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			request.Content = new StringContent(JsonConvert.SerializeObject(contactModel), Encoding.UTF8, "application/json");
-			HttpResponseMessage response = await httpClient.SendAsync(request);
+			request.Content = new StringContent(
+				JsonConvert.SerializeObject(contactModel), 
+				Encoding.UTF8, 
+				"application/json"
+			);
+			HttpResponseMessage response = await _httpClient.SendAsync(request);
 
 			if (response.IsSuccessStatusCode == false)
 				throw new Exception(response.ReasonPhrase);

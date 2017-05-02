@@ -16,7 +16,7 @@ namespace Core.ViewModels
 		public ObservableCollection<ContactModel> Contacts { get; set; }
 
 		public ICommand GotoAddCommand 
-			=> new Command(async () => GotoAdd());
+			=> new Command(async () => await GotoAdd());
 
 		public HomeViewModel()
 		{
@@ -34,7 +34,7 @@ namespace Core.ViewModels
 
 				var data = await DependencyService
 					.Get<IServerService>()
-					.GetContacts();
+					.Get();
 
 				Contacts.Clear();
 

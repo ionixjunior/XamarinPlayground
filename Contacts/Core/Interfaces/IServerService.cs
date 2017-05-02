@@ -12,18 +12,22 @@ namespace Core.Interfaces
 	public interface IServerService
 	{
 		[Get("/contact")]
-		Task<IList<ContactModel>> GetContacts();
+		Task<IList<ContactModel>> Get();
 
 		[Post("/contact")]
-		Task<ContactModel> Insert([Body] ContactModel contactModel);
+		Task<ContactModel> Post(
+			[Body] ContactModel contactModel
+		);
 
 		[Put("/contact/{id}")]
-		Task<ContactModel> Update(
+		Task<ContactModel> Put(
 			[AliasAs("id")] string id, 
 			ContactModel contactModel
 		);
 
 		[Delete("/contact/{id}")]
-		Task Delete(string id);
+		Task Delete(
+			[AliasAs("id")] string id
+		);
 	}
 }
