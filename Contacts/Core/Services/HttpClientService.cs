@@ -66,7 +66,6 @@ namespace Core.Services
 
 			string url = $"{AppConfig.RestApiBaseUrl}/contact/{id}";
 
-			HttpClient httpClient = new HttpClient();
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
 			request.Headers.Add("Authorization", $"Basic {_token}");
 			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
