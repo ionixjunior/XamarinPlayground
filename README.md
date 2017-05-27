@@ -11,3 +11,7 @@ Desenvolvido com Xamarin.Forms, aborda a implementação de um **ListView** com 
 ### CustomTitle
 
 Desenvolvido com Xamarin.Forms, mostra como customizar o título da barra de navegação para possibilitar inserir texto com imagens e ainda a possibilidade de clicar e disparar uma ação no app. AINDA EM DESENVOLVIMENTO.
+
+### XFPerformance
+
+Projeto utilizado como exemplo na palestra do Xamarin Summit.
