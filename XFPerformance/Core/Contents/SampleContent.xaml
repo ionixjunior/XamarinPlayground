@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Core.Contents.SampleContent">
+	<ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="user.png" Grid.Column="0" Grid.Row="0" />
+
+                        <StackLayout Grid.Column="1" Grid.Row="0">
+                            <Label Text="Nome" />
+                            <Entry Text="{Binding Contact.FirstName}" Placeholder="Informe o nome" />
+
+                            <Label Text="Sobrenome" />
+                            <Entry Text="{Binding Contact.LastName}" Placeholder="Informe o sobrenome" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                            <Label Text="E-mail" />
+                            <Entry Text="{Binding Contact.Email}" Keyboard="Email" Placeholder="Informe o e-mail" />
+                            
+                            <Label Text="Birthday" />
+                            <DatePicker Date="{Binding Contact.Birthday, StringFormat='{0:g}'}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Site" />
+                        <Entry Text="{Binding Contact.Website}" Placeholder="Informe o site" />
+
+                        <Label Text="Telefone" />
+                        <Entry Text="{Binding Contact.Phone}" Keyboard="Telephone" Placeholder="Informe o telefone" />
+
+                        <Label Text="Endereço" />
+                        <Entry Text="{Binding Contact.Address}" Placeholder="Informe o endereço" />
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Facebook" />
+                        <Entry Text="{Binding Contact.Facebook}" Placeholder="Informe o facebook" />
+
+                        <Label Text="Twitter" />
+                        <Entry Text="{Binding Contact.Twitter}" Placeholder="Informe o twitter" />
+
+                        <Label Text="Linkedin" />
+                        <Entry Text="{Binding Contact.Linkedin}" Placeholder="Informe o linkedin" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+	</ContentView.Content>
+</ContentView>

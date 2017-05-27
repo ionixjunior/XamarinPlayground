@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:views="clr-namespace:Core.Views"
+    x:Class="Core.Views.MasterDetailView">
+	<MasterDetailPage.Master>
+        <ContentPage Title="Master">
+            <ContentPage.Content>
+                <StackLayout Margin="0, 20, 0, 0">
+                    <Button Text="Lista Normal" Clicked="OnClickToListView" />
+                    <Button Text="Lista Lazy" Clicked="OnClickToListViewLazy" />
+
+                    <Button Text="Detalhe Normal" Clicked="OnClickToDetail" />
+                    <Button Text="Detalhe Lazy" Clicked="OnClickToDetailLazy" />
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+	</MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <views:DetailView />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Core.Views.ContactsView"
+    Title="Contatos"
+    x:Name="pgContacts">
+	<ContentPage.Content>
+        <ListView 
+            ItemsSource="{Binding Contacts}" 
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="true"
+            HeightRequest="90"
+            ItemSelected="OnItemSelected"
+        >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Apagar" IsDestructive="true" Command="{Binding Path=BindingContext.ClickCommand, Source={x:Reference pgContacts}}" />
+                            <MenuItem Text="Compartilhar" Command="{Binding Path=BindingContext.ClickCommand, Source={x:Reference pgContacts}}" />
+                            <MenuItem Text="Enviar mensagem" Command="{Binding Path=BindingContext.ClickCommand, Source={x:Reference pgContacts}}" />
+                            <MenuItem Text="Mudo" Command="{Binding Path=BindingContext.ClickCommand, Source={x:Reference pgContacts}}" />
+                        </ViewCell.ContextActions>
+                        
+                        <ViewCell.View>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image 
+                                    Grid.Column="0"
+                                    Source="{Binding Image}" 
+                                />
+                                
+                                <StackLayout
+                                    Grid.Column="1"
+                                >
+                                    <Label Text="{Binding FirstName}" />
+                                    <Label Text="{Binding Email}" />
+                                    <Label Text="{Binding Twitter}" />
+                                    <Label Text="{Binding Facebook}" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+	</ContentPage.Content>
+</ContentPage>
