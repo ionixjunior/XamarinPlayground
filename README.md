@@ -15,3 +15,7 @@ Desenvolvido com Xamarin.Forms, mostra como customizar o título da barra de nav
 ### XFPerformance
 
 Projeto utilizado como exemplo na palestra do Xamarin Summit.
+
+### XFiOSCustomStyle
+
+Projeto utilizado como exemplo no artigo https://www.ionixjunior.com.br/como-customizar-cor-do-uinavigationbar-e-uialertcontroller-no-xamarin-ios/
