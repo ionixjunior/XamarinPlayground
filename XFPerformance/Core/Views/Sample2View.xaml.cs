@@ -16,7 +16,7 @@ namespace Core.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await Task.Delay(1000);
+            await Task.Delay(500);
             Content = new SampleContent();
         }
     }

@@ -3547,6 +3547,9 @@ namespace Core.Droid
 			// aapt resource value: 0x7f0a015b
 			public const int Base_Widget_Design_TabLayout = 2131362139;
 			
+			// aapt resource value: 0x7f0a0175
+			public const int Button_Tinted = 2131362165;
+			
 			// aapt resource value: 0x7f0a0017
 			public const int CardView = 2131361815;
 			

@@ -10,5 +10,11 @@ namespace Core.Views
             InitializeComponent();
             BindingContext = new SampleViewModel();
         }
+
+        protected override void OnCurrentPageChanged()
+        {
+            System.Diagnostics.Debug.WriteLine("## ABA TROCADA ##");
+            base.OnCurrentPageChanged();
+        }
     }
 }

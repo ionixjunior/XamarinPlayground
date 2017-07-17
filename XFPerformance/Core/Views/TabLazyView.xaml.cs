@@ -19,6 +19,8 @@ namespace Core.Views
 
         protected override void OnCurrentPageChanged()
         {
+            System.Diagnostics.Debug.WriteLine("## ABA TROCADA ##");
+
             base.OnCurrentPageChanged();
 			_timestamp = DateTime.Now.AddSeconds(1).Ticks;
 
