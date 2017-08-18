@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Core.Helpers;
 using Core.Models;
 using Core.Services;
@@ -83,10 +84,10 @@ namespace Core.ViewModels
             }
         }
 
-        public Command SalvarCommand 
+        public ICommand SalvarCommand 
             => new Command(async () => await Salvar());
 
-        public Command ApagarCommand
+        public ICommand ApagarCommand
             => new Command(async () => await Apagar());
 
         public ClienteDetalheViewModel()

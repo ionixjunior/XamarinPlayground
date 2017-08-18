@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Core.Helpers;
 using Core.Models;
 using Core.Services;
@@ -29,13 +30,13 @@ namespace Core.ViewModels
 
         public ObservableCollection<ClienteModel> Clientes { get; private set; }
 
-        public Command CarregarDadosCommand 
+        public ICommand CarregarDadosCommand 
             => new Command(CarregarDados);
 
-        public Command CadastrarCommand 
+        public ICommand CadastrarCommand 
             => new Command(async () => await Cadastrar());
 
-        public Command<ClienteModel> SelecionaItemCommand
+        public ICommand SelecionaItemCommand
             => new Command<ClienteModel>(async (item) => await SelecionaItem(item));
 
         public ClienteViewModel()
