@@ -13,7 +13,7 @@ namespace Core
             InitializeComponent();
 
             PrepareDatabase();
-            NavigationHelper.Instance.StartMainPage<ClienteViewModel>("Meus clientes");
+            NavigationHelper.Instance.StartNavigationPage<ClienteViewModel>("Meus clientes");
         }
 
         protected override void OnStart()

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +14,7 @@ namespace Core.Helpers
 
         private NavigationHelper() {}
 
-        public void StartMainPage<TViewModel>(string title) where TViewModel : BaseViewModel, new()
+        public void StartNavigationPage<TViewModel>(string title) where TViewModel : BaseViewModel, new()
         {
             var page = ResolvePage<TViewModel>(title);
             if (page == null)
@@ -23,17 +23,38 @@ namespace Core.Helpers
             Application.Current.MainPage = new NavigationPage(page);
         }
 
+        public void StartMasterDetail<TViewModelMaster, TViewModelDetail>(string titleMaster, string titleDetail)
+            where TViewModelMaster : BaseViewModel, new()
+            where TViewModelDetail : BaseViewModel, new()
+        {
+            var master = ResolvePage<TViewModelMaster>(titleMaster);
+            if (master == null)
+                return;
+
+            var detail = ResolvePage<TViewModelDetail>(titleDetail);
+            if (detail == null)
+                return;
+
+            master.Title = titleMaster;
+
+            Application.Current.MainPage = new MasterDetailPage()
+            {
+                Master = master,
+                Detail = new NavigationPage(detail)
+            };
+        }
+
         public async Task NavigateAsync<TViewModel>(string title, Dictionary<string, string> parameters = null) where TViewModel : BaseViewModel, new()
         {
             var page = ResolvePage<TViewModel>(title, parameters);
-            await Application.Current.MainPage.Navigation.PushAsync(page);
+            await GetNavigation().PushAsync(page);
         }
 
         public async Task BackAsync<TViewModel>(Action<TViewModel> action = null) where TViewModel : BaseViewModel
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await GetNavigation().PopAsync();
 
-            var lastPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+            var lastPage = GetNavigation().NavigationStack.LastOrDefault();
             if (lastPage == null)
                 return;
 
@@ -86,6 +107,19 @@ namespace Core.Helpers
             }
 
             return page;
+        }
+
+        private INavigation GetNavigation()
+        {
+            var mainPage = Application.Current.MainPage;
+
+            if (mainPage is MasterDetailPage)
+                return ((MasterDetailPage)mainPage).Detail.Navigation;
+
+            if (mainPage is TabbedPage)
+                return mainPage.Navigation;
+            
+            return mainPage.Navigation;
         }
     }
 }
