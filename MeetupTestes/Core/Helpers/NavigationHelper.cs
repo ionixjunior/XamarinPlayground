@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.ViewModels;
 using Xamarin.Forms;
 
@@ -11,16 +14,36 @@ namespace Core.Helpers
 
         private NavigationHelper() {}
 
-        public void StartMainPage<TViewModel>() where TViewModel : BaseViewModel, new()
+        public void StartMainPage<TViewModel>(string title) where TViewModel : BaseViewModel, new()
         {
-            var page = ResolvePage<TViewModel>();
+            var page = ResolvePage<TViewModel>(title);
             if (page == null)
                 return;
 
             Application.Current.MainPage = new NavigationPage(page);
         }
 
-        public Page ResolvePage<TViewModel>() where TViewModel : BaseViewModel, new()
+        public async Task NavigateAsync<TViewModel>(string title, Dictionary<string, string> parameters = null) where TViewModel : BaseViewModel, new()
+        {
+            var page = ResolvePage<TViewModel>(title, parameters);
+            await Application.Current.MainPage.Navigation.PushAsync(page);
+        }
+
+        public async Task BackAsync<TViewModel>(Action<TViewModel> action = null) where TViewModel : BaseViewModel
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+
+            var lastPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+            if (lastPage == null)
+                return;
+
+            if (!lastPage.BindingContext.GetType().Equals(typeof(TViewModel)))
+                return;
+
+            action?.Invoke(lastPage.BindingContext as TViewModel);
+        }
+
+        private Page ResolvePage<TViewModel>(string title, Dictionary<string, string> parameters = null) where TViewModel : BaseViewModel, new()
         {
             Page page = null;
 
@@ -43,7 +66,16 @@ namespace Core.Helpers
 				if (viewModel == null)
 					return null;
 
-				viewModel.Init();
+                if (parameters == null)
+                {
+                    viewModel.Init();
+                }
+                else
+                {
+                    viewModel.Init(parameters);
+                }
+
+                viewModel.Title = title;
 				page.BindingContext = viewModel;
 				page.Appearing += (sender, e) => { viewModel.OnAppearing(); };
 				page.Disappearing += (sender, e) => { viewModel.OnDisappearing(); };

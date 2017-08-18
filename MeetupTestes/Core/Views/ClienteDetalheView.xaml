@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Core.Views.ClienteDetalheView"
+    Title="{Binding Title}"
+>
+	<ContentPage.Content>
+        <ScrollView>
+            <StackLayout 
+                Margin="20"
+            >
+                <Label 
+                    Text="Nome"
+                />
+                <Entry 
+                    Text="{Binding Nome}"
+                />
+
+                
+                <Label 
+                    Text="Endereço"
+                />
+                <Entry 
+                    Text="{Binding Endereco}"
+                />
+
+                
+                <Label 
+                    Text="E-mail"
+                />
+                <Entry 
+                    Text="{Binding Email}"
+                    Keyboard="Email"
+                />
+
+
+                <Label 
+                    Text="Telefone"
+                />
+                <Entry 
+                    Text="{Binding Telefone}"
+                    Keyboard="Telephone"
+                />
+
+                <Button 
+                    Text="Salvar"
+                    Command="{Binding SalvarCommand}"
+                />
+
+                <Button 
+                    IsVisible="{Binding Edicao}"
+                    Text="Apagar"
+                    Command="{Binding ApagarCommand}"
+                />
+            </StackLayout>
+        </ScrollView>
+	</ContentPage.Content>
+</ContentPage>

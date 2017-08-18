@@ -1,4 +1,6 @@
 ﻿using Core.Helpers;
+using Core.Interfaces;
+using Core.Models;
 using Core.ViewModels;
 using Xamarin.Forms;
 
@@ -10,7 +12,8 @@ namespace Core
         {
             InitializeComponent();
 
-            NavigationHelper.Instance.StartMainPage<ClienteViewModel>();
+            PrepareDatabase();
+            NavigationHelper.Instance.StartMainPage<ClienteViewModel>("Meus clientes");
         }
 
         protected override void OnStart()
@@ -26,6 +29,15 @@ namespace Core
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        private void PrepareDatabase()
+        {
+            var db = DependencyService.Get<ISQLite>();
+            if (db == null)
+                return;
+
+            db.GetConnection().CreateTable<ClienteModel>();
         }
     }
 }
