@@ -1,6 +1,6 @@
 # Xamarin Online Week '17
 
-Projetos desenvolvidos para palestra no Xamarin Online Week '17, "Por que você deve escolher Xamarin como plataforma mobile".
+Projetos desenvolvidos para palestra no Xamarin Online Week '17, **Por que você deve escolher Xamarin como plataforma mobile**.
 
 ## Projetos
 
