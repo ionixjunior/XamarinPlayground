@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="LiveXAML" Version="2.1.19" />
+    <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="15.4.0.20" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Views\" />
+    <Folder Include="Effects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ContentView.xaml.cs">
+      <DependentUpon>CustomContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\CustomContentView.xaml.cs">
+      <DependentUpon>CustomContentView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

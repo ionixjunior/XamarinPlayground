@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS"
+    xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
+    xmlns:formsAndroid="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Platform.Android;targetPlatform=Android"
+    x:Class="Core.Views.NativeView"
+    Padding="40"
+>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+	<ContentPage.Content>
+        <StackLayout>
+            <Label 
+                Text="Label Android e iOS"
+            />
+            
+            <ios:UILabel 
+                Text="Label iOS" 
+                TextColor="{x:Static ios:UIColor.Black}" 
+                View.HorizontalOptions="Start" 
+            />
+            
+            <androidWidget:TextView 
+                Text="Label Android" 
+                x:Arguments="{x:Static formsAndroid:Forms.Context}" 
+            />
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>
