@@ -167,6 +167,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\monkey1.jpg" />
+    <AndroidResource Include="Resources\drawable\monkey2.jpg" />
+    <AndroidResource Include="Resources\drawable\monkey3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -1,0 +1,16 @@
+﻿{
+  "Views\\MonkeyView.xaml" : [
+    {
+      "Name": "Macaco Prego",
+      "Image": "monkey1.jpg"
+    },
+    {
+      "Name": "Bugio",
+      "Image": "monkey2.jpg"
+    },
+    {
+      "Name": "Sagui",
+      "Image": "monkey3.jpg"
+    }
+  ]
+}

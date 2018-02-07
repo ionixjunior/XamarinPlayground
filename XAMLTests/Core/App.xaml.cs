@@ -9,7 +9,7 @@ namespace Core
         {
             InitializeComponent();
 
-            MainPage = new AnimationsView();
+            MainPage = new MonkeyView();
         }
 
         protected override void OnStart()
