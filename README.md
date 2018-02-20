@@ -19,3 +19,7 @@ Projeto utilizado como exemplo na palestra do Xamarin Summit.
 ### XFiOSCustomStyle
 
 Projeto utilizado como exemplo no artigo https://www.ionixjunior.com.br/como-customizar-cor-do-uinavigationbar-e-uialertcontroller-no-xamarin-ios/
+
+### XAMLTests
+
+Projeto utilizado como exemplo no artigo https://www.ionixjunior.com.br/xamarin-forms-e-ui-qual-ferramenta-e-mais-produtiva/
