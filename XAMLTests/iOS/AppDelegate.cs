@@ -14,9 +14,15 @@ namespace Core.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            SfScheduleRenderer.Init(); 
+            SfScheduleRenderer.Init();
 
-            LoadApplication(new App());
+            var xfApplication = new App();
+
+#if DEBUG
+            Xamarin.Forms.HotReloader.Current.Start(xfApplication, 4291);
+#endif
+
+            LoadApplication(xfApplication);
 
             //LoadApplication(UXDivers.Gorilla.iOS.Player.CreateApplication(
             //  new UXDivers.Gorilla.Config("Good Gorilla")

@@ -1,0 +1,3 @@
+# CAKE
+tools/*
+!tools/packages.config

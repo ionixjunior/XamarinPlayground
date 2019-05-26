@@ -22,7 +22,13 @@ namespace Core.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            var xfApplication = new App();
+
+#if DEBUG
+            Xamarin.Forms.HotReloader.Current.Start(xfApplication, 4290);
+#endif
+
+            LoadApplication(xfApplication);
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
             //    this,
             //    new UXDivers.Gorilla.Config("Good Gorilla")
